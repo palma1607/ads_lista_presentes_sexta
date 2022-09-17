@@ -8,6 +8,11 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
+import br.com.up.listadepresentes.models.Gift;
+import br.com.up.listadepresentes.repositories.GiftRepository;
+
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fabAddGift;
@@ -17,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fabAddGift = findViewById(R.id.fab_add_gift);
-
 
         fabAddGift.setOnClickListener(
                 new View.OnClickListener(){
@@ -33,5 +37,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ArrayList<Gift> gifts = GiftRepository
+                .getInstance().getAll();
+
+        if(gifts.size() > 0){
+
+        }
+
     }
 }
